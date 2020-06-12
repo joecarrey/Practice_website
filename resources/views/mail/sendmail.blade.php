@@ -1,0 +1,1 @@
+Please active your account : {{ url('/activation', $link)}}
