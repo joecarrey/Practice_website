@@ -4,7 +4,7 @@ namespace App;
 use Validator;
 trait Help
 {
-    public function save_file($folder, $file, $update = null, $old = null){
+    public function save_file($folder, $file, $i, $update = null, $old = null){
     	if($update){
 	        $split = explode("/", $old);
 	        $filename = end($split);
@@ -25,7 +25,7 @@ trait Help
 	    $extension = $file->getClientOriginalExtension();
 
 	    //filename to store
-	    $fileNameToStore = $filename.'_'.time().'.'.$extension;
+	    $fileNameToStore = $filename.'_'.md5(uniqid($i, true)).'.'.$extension;
 
 	    //upload image
 	    $path = $file->storeAs('public/' . $folder, $fileNameToStore);
@@ -33,14 +33,8 @@ trait Help
 	    return $fileNameToStore; 
     }
 
-    /**
-     * Create comment for queries and documents
-     *
-     * @param  $type: 0 - query, 1 - docs
-     * 
-     */
-    public function create_comment($request, $id, $obj, $type){
-    	$rules = [
+    public function validate_comment($request){
+        $rules = [
             'body' => 'required|string',
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -48,29 +42,7 @@ trait Help
             return response()->json($validator->errors(), 400);
         }
         else
-        	return null;
-
-    	if($type == 0)
-    		$obj->query_id = $id;
-    	else
-    		$obj->doc_id = $id;
-    	$obj->body = $request->body;
-    	$obj->save();
-    }
-
-    public function update_comment($request, $obj){
-    	$rules = [
-            'body' => 'required|string',
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
-            return response()->json($validator->errors(), 400);
-        }
-        else
-        	return null;
-
-    	$obj->body = $request->body;
-    	$obj->save();
+            return null;
     }
 
     public function validate_order($request)

@@ -28,15 +28,15 @@ Route::get('/admin/login', 'Admin\LoginController@index')->name('admin_login');
 Route::post('/admin/login', 'Admin\LoginController@login')->name('logging_in');
 Route::post('/register', 'RegisterController@create')->name('new_reg');
 
-Route::get('activation/{token}', 'Admin\LoginController@userActivation');
+Route::get('activation/{token}', 'RegisterController@userActivation');
 
 Route::group(['prefix' => 'admin','middleware' => 'admin', 'namespace' => 'Admin'], function(){
 	
 	Route::get('/dashboard', 'LoginController@dashboard')->middleware('admin')->name('dashboard');
 	
 	Route::post('/logout', 'LoginController@logout')->name('logging_out');
-	Route::post('/comment_query', 'CommentController@comment_query');
-	Route::post('/comment_doc', 'CommentController@comment_doc');
+	Route::post('/comment_query/{id}', 'CommentController@comment_query');
+	Route::post('/comment_doc/{id}', 'CommentController@comment_doc');
 	Route::post('/order/{id}', 'OrderController@create_order');
 
 	Route::patch('/comment_query/{id}', 'CommentController@update_query_comment');

@@ -13,10 +13,14 @@ class Query extends Model
     const STATUS_PROCESS            = -2;
 
     public function user(){
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\User', 'user_id');
     }
 
     public function query_comment(){
-    	return $this->hasMany('App\Query_Comment');
+    	return $this->hasMany('App\Query_Comment', 'query_id');
+    }
+
+    public function order(){
+        return $this->hasMany('App\Order', 'query_id');
     }
 }

@@ -15,6 +15,8 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('query_id')->unsigned();
             $table->foreign('query_id')->references('id')->on('queries')->onDelete('cascade');
             $table->string('doc_file_1');
@@ -22,6 +24,7 @@ class CreateDocumentsTable extends Migration
             $table->string('doc_file_3');
             $table->integer('length');
             $table->string('object_type');
+            $table->string('technology')->nullable();
             $table->string('region');
             $table->tinyInteger('status')->nullable();
             $table->timestamps();

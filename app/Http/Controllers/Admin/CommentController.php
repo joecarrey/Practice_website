@@ -14,31 +14,45 @@ class CommentController extends Controller
 	use Help; // trait
 	public function comment_query(Request $request, $id){
 		$comment = new Query_Comment;
-		$result = $this->create_comment($request, $id, $comment, 0);
+		$result = $this->validate_comment($request);
 		if($result)
-			return $result;
+			return back()->with('error', $result);
+		$comment->query_id = $id;
+    	$comment->body = $request->body;
+    	$comment->save();
+		return back();
 	}
 
 	public function comment_doc(Request $request, $id){
 		$comment = new Doc_Comment;
-		$result = $this->create_comment($request, $id, $comment, 1);
+		$result = $this->validate_comment($request);
 		if($result)
-			return $result;
+			return back()->with('error', $result);
+		$comment->doc_id = $id;
+    	$comment->body = $request->body;
+    	$comment->save();
+		return back();
 	}
 
 
 	public function update_query_comment(Request $request, $id){
 		$comment = Query_Comment::findOrFail($id);
-		$result = $this->update_comment($request, $comment);
+		$result = $this->validate_comment($request);
 		if($result)
-			return $result;
+			return back()->with('error', $result);
+		$comment->body = $request->body;
+        $comment->save();
+		return back();
 	}
 
 	public function update_doc_comment(Request $request, $id){
 		$comment = Doc_Comment::findOrFail($id);
-		$result = $this->update_comment($request, $comment);
+		$result = $this->validate_comment($request);
 		if($result)
-			return $result;
+			return back()->with('error', $result);
+		$comment->body = $request->body;
+        $comment->save();
+		return back();
 	}
 
 	/**
@@ -53,5 +67,6 @@ class CommentController extends Controller
 		else
 			$comment = Doc_Comment::findOrFail($id);
 		$comment->delete();
+		return back();
 	}
 }

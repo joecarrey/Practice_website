@@ -19,8 +19,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
+    use AuthenticatesUsers;  // attemptLogin() has been modified 
     /**
      * Where to redirect users after login.
      *

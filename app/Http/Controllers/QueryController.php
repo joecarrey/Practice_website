@@ -19,8 +19,8 @@ class QueryController extends Controller
         $query = new Query;
         $query->number_of_stations = $request->number_of_stations;
         $query->description = $request->description;
-        $query->query_file_1 = $this->save_file('query_files', $request->file('query_file_1'));
-        $query->query_file_2 = $this->save_file('query_files', $request->file('query_file_2'));
+        $query->query_file_1 = $this->save_file('query_files', $request->file('query_file_1'), 1);
+        $query->query_file_2 = $this->save_file('query_files', $request->file('query_file_2'), 2);
         $query->status = Query::STATUS_SENT;
         $query->user_id = Auth::user()->id;
         $query->save();
@@ -36,8 +36,8 @@ class QueryController extends Controller
         if(($query->user_id == Auth::user()->id) and ($query->status != Query::STATUS_FINISHED)){
             $query->number_of_stations = $request->number_of_stations;
             $query->description = $request->description;
-            $query->query_file_1 = $this->save_file('query_files', $request->file('query_file_1'), 1, $query->query_file_1);
-	        $query->query_file_2 = $this->save_file('query_files', $request->file('query_file_2'), 1, $query->query_file_2);
+            $query->query_file_1 = $this->save_file('query_files', $request->file('query_file_1'), 1, 1, $query->query_file_1);
+	        $query->query_file_2 = $this->save_file('query_files', $request->file('query_file_2'), 2, 1, $query->query_file_2);
 	        $query->status = Query::STATUS_SENT;
 	        $query->save();
             return back();
