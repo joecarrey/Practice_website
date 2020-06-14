@@ -42,8 +42,8 @@
                                             <td>{{$query->user->name}}</td>
                                             <td>{{$query->number_of_stations}}</td>
                                             <td><p style="height: 100px; overflow: auto;">{{$query->description}}</p></td>
-                                            <td>{{substr($query->query_file_1, 0, -37)}}</td>
-                                            <td>{{substr($query->query_file_2, 0, -37)}}</td>
+                                            <td><a href="/admin/file/{{$query->query_file_1}}/query_files" target="_blank">{{substr($query->query_file_1, 0, -37)}}</a></td>
+                                            <td><a href="/admin/file/{{$query->query_file_2}}/query_files" target="_blank">{{substr($query->query_file_2, 0, -37)}}</a></td>
                                             <td style="width: 250px;">    
                                                 @switch($query->status)
                                                     @case(1)
@@ -98,7 +98,7 @@
 				                                    }
 				                                    else $x_order = null;    
 				                                @endphp
-				                                {{substr($x_order, 0, -37)}}
+				                                <a href="/admin/file/{{$x_order}}/order_files" target="_blank">{{substr($x_order, 0, -37)}}</a>
                                             </td>
                                             <td>
                                             	@if ($comment)
@@ -219,7 +219,7 @@
 	                                <form action="{{url('/admin/order/' . $order_id)}}" enctype="multipart/form-data" method="post">
 	                                    <div class="form-group">
 	                                    {{csrf_field()}}
-	                                        <label for="order_file_11_{{$query->id}}" class="mt-2">Order File: {{substr($x_order, 0, -37)}}</label>
+	                                        <label for="order_file_11_{{$query->id}}" class="mt-2">Order File: <a href="/admin/file/{{$x_order}}/order_files" target="_blank">{{substr($x_order, 0, -37)}}</a></label>
 	                                        <input id="doc_file_11_{{$query->id}}" class="form-control mb-2" type="file" name="order_file" required>
 	                                        <input type="hidden" name="_method" value="PATCH">
 	                                        <input type="submit" class="btn btn-warning mt-2" value="Edit">
@@ -300,9 +300,9 @@
                                             <th scope="row">{{$doc->id}}</th>
                                             <td>{{$doc->user->name}}</td>
                                             <td><p style="height: 100px; overflow: auto;">{{$doc->queryabc->description}}</p></td>
-                                            <td>{{substr($doc->doc_file_1, 0, -37)}}</td>
-                                            <td>{{substr($doc->doc_file_2, 0, -37)}}</td>
-                                            <td>{{substr($doc->doc_file_3, 0, -37)}}</td>
+                                            <td><a href="/admin/file/{{$doc->doc_file_1}}/doc_files" target="_blank">{{substr($doc->doc_file_1, 0, -37)}}</a></td>
+                                            <td><a href="/admin/file/{{$doc->doc_file_2}}/doc_files" target="_blank">{{substr($doc->doc_file_2, 0, -37)}}</a></td>
+                                            <td><a href="/admin/file/{{$doc->doc_file_3}}/doc_files" target="_blank">{{substr($doc->doc_file_3, 0, -37)}}</a></td>
                                             <td>{{$doc->length}}</td>
                                             <td>{{$doc->technology}}</td>
                                             <td>{{$doc->object_type}}</td>

@@ -33,6 +33,7 @@ Route::get('activation/{token}', 'RegisterController@userActivation');
 Route::group(['prefix' => 'admin','middleware' => 'admin', 'namespace' => 'Admin'], function(){
 	
 	Route::get('/dashboard', 'LoginController@dashboard')->middleware('admin')->name('dashboard');
+	Route::get('/file/{filename}/{folder}', 'FileController@view_file');
 	
 	Route::post('/logout', 'LoginController@logout')->name('logging_out');
 	Route::post('/comment_query/{id}', 'CommentController@comment_query');
@@ -55,7 +56,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/panel', 'HomeController@panel')->name('panel');
-	
+	Route::get('/file/{filename}/{folder}', 'Admin\FileController@view_file');
+
 	Route::post('/request', 'QueryController@send_query');
 	Route::post('/docs', 'DocsController@send_doc');
 	

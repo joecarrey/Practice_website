@@ -40,8 +40,8 @@
                                             <th scope="row">{{$query->id}}</th>
                                             <td>{{$query->number_of_stations}}</td>
                                             <td><p style="height: 100px; overflow: auto;">{{$query->description}}</p></td>
-                                            <td>{{substr($query->query_file_1, 0, -37)}}</td>
-                                            <td>{{substr($query->query_file_2, 0, -37)}}</td>
+                                            <td><a href="/file/{{$query->query_file_1}}/query_files" target="_blank">{{substr($query->query_file_1, 0, -37)}}</a></td>
+                                            <td><a href="/file/{{$query->query_file_2}}/query_files" target="_blank">{{substr($query->query_file_2, 0, -37)}}</a></td>
                                             <td>    
                                                 @switch($query->status)
                                                     @case(1)
@@ -123,9 +123,9 @@
                                         <input class="form-control my-2" type="text" name="description" value="{{$query->description}}" required>
                                         <hr><hr>
                                         <p>Resubmit all your files please to change</p>
-                                        <label for="file_1_{{$query->id}}">File 1: {{substr($query->query_file_1, 0, -37)}}</label>
+                                        <label for="file_1_{{$query->id}}">File 1: <a href="/file/{{$query->query_file_1}}/query_files" target="_blank">{{substr($query->query_file_1, 0, -37)}}</a></label>
                                         <input id="file_1_{{$query->id}}" class="form-control" type="file" name="query_file_1" required>
-                                        <label for="file_2_{{$query->id}}">File 2: {{substr($query->query_file_2, 0, -37)}}</label>
+                                        <label for="file_2_{{$query->id}}">File 2: <a href="/file/{{$query->query_file_2}}/query_files" target="_blank">{{substr($query->query_file_2, 0, -37)}}</a></label>
                                         <input id="file_2_{{$query->id}}" class="form-control" type="file" name="query_file_2" required>
 
                                         <input type="hidden" name="_method" value="PATCH">
@@ -271,9 +271,9 @@
                                         <tr>
                                             <th scope="row">{{$doc->id}}</th>
                                             <td><p style="height: 100px; overflow: auto;">{{$doc->queryabc->description}}</p></td>
-                                            <td>{{substr($doc->doc_file_1, 0, -37)}}</td>
-                                            <td>{{substr($doc->doc_file_2, 0, -37)}}</td>
-                                            <td>{{substr($doc->doc_file_3, 0, -37)}}</td>
+                                            <td><a href="/file/{{$doc->doc_file_1}}/doc_files" target="_blank">{{substr($doc->doc_file_1, 0, -37)}}</a></td>
+                                            <td><a href="/file/{{$doc->doc_file_2}}/doc_files" target="_blank">{{substr($doc->doc_file_2, 0, -37)}}</a></td>
+                                            <td><a href="/file/{{$doc->doc_file_3}}/doc_files" target="_blank">{{substr($doc->doc_file_3, 0, -37)}}</a></td>
                                             <td>{{$doc->length}}</td>
                                             <td>{{$doc->technology}}</td>
                                             <td>{{$doc->object_type}}</td>
@@ -344,11 +344,11 @@
                                     <div class="form-group">
                                     {{csrf_field()}}
                                         <p>Resubmit all your files please to change</p>
-                                        <label for="doc_file_1_{{$doc->id}}" class="mt-2">File 1: {{substr($doc->doc_file_1, 0, -37)}}</label>
+                                        <label for="doc_file_1_{{$doc->id}}" class="mt-2">File 1: <a href="/file/{{$doc->doc_file_1}}/doc_files" target="_blank">{{substr($doc->doc_file_1, 0, -37)}}</a></label>
                                         <input id="doc_file_1_{{$doc->id}}" class="form-control mb-2" type="file" name="doc_file_1" required>
-                                        <label for="doc_file_2_{{$doc->id}}" class="mt-2">File 2: {{substr($doc->doc_file_2, 0, -37)}}</label>
+                                        <label for="doc_file_2_{{$doc->id}}" class="mt-2">File 2: <a href="/file/{{$doc->doc_file_2}}/doc_files" target="_blank">{{substr($doc->doc_file_2, 0, -37)}}</a></label>
                                         <input id="doc_file_2_{{$doc->id}}" class="form-control mb-2" type="file" name="doc_file_2" required>
-                                        <label for="doc_file_3_{{$doc->id}}" class="mt-2">File 3: {{substr($doc->doc_file_3, 0, -37)}}</label>
+                                        <label for="doc_file_3_{{$doc->id}}" class="mt-2">File 3: <a href="/file/{{$doc->doc_file_3}}/doc_files" target="_blank">{{substr($doc->doc_file_3, 0, -37)}}</a></label>
                                         <input id="doc_file_3_{{$doc->id}}" class="form-control mb-2" type="file" name="doc_file_3" required>
 
                                         <label for="length_{{$doc->id}}" class="mt-2">Length</label>
