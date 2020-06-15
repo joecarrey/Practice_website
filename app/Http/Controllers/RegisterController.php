@@ -37,8 +37,8 @@ class RegisterController extends Controller
           $message->to($temp['email']);
           $message->subject('Activation Code');
         });
-        // return $user;
-        return response()->json(['user'=>$user, 'message'=>'We sent activation code. Please check your email.', 'code' => 201], 201);
+        return redirect()->route('login')->with('success', 'We sent activation code. Please check your email.');
+        // return response()->json(['user'=>$user, 'message'=>'We sent activation code. Please check your email.', 'code' => 201], 201);
     }
 
     public function userActivation($token){
