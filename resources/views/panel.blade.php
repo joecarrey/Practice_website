@@ -313,7 +313,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if (($query->status != 2) and ($query->status != 3))
+                                                @if (($doc->status != 2) and ($doc->status != 3))
                                                     <button type="button" class="btn btn-primary d-inline mb-2" data-toggle="modal" data-target="#editDocModal_{{$query->id}}">Edit</button>
                                                 @else
                                                     <button type="button" class="btn btn-primary d-inline mb-2" disabled>Edit</button>
